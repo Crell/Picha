@@ -5,6 +5,12 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    image_sources: '%env(csv:IMAGE_SOURCES)%'
+    image_sizes:
+      'big': { width: 2048, height: 1536 }
+      'medium': { width: 1024, height: 768 }
+      'small': { width: 640, height: 480 }
+      'tiny': { width: 320, height: 240 }
 
 services:
     # default configuration for services in *this* file
