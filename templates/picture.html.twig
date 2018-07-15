@@ -1,0 +1,7 @@
+{# Requires a 'picture' variable. #}
+<picture>
+    {% for source in picture.sources %}
+        <source srcset="{{ source.url }}" media="(max-width: {{ source.width }}) and (max-height: {{ source.height }})" />
+    {% endfor %}
+    <img srcset="{{ picture.defaultUrl }}" alt="{{ picture.altText }}" />
+</picture>
