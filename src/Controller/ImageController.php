@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -14,22 +15,8 @@ class ImageController extends Controller
      */
     public function index(string $path)
     {
-        $imageSources = $this->container->getParameter('image_sources');
-
-        $imageRoot = $imageSources[0];
-
-        $files = new Filesystem();
-
-        print_r($imageSources);
-
-        $pathToFile = $imageRoot . $path;
-
-        print_r($pathToFile);
 
         $imageSizes = $this->container->getParameter('image_sizes');
-
-
-        //print_r($imageSizes);
 
         $image = new ImageElement($path, $imageSizes, $this->container->get('router'));
 
@@ -44,7 +31,18 @@ class ImageController extends Controller
      */
     public function generatedImage(string $imageSize, string $path)
     {
+        $imageSources = $this->container->getParameter('image_sources');
+        $imageRoot = $imageSources[0];
 
+        $pathToFile = $imageRoot . $path;
+
+        $filesystem = new Filesystem();
+
+        if (!$filesystem->exists($pathToFile)) {
+
+        }
+
+        return new BinaryFileResponse($pathToFile);
     }
 }
 
