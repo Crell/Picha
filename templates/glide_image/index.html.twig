@@ -17,4 +17,13 @@
         <li>Your template at <code><a href="{{ 'templates/glide_image/index.html.twig'|file_link(0) }}">templates/glide_image/index.html.twig</a></code></li>
     </ul>
 </div>
+
+
+
+    <figure>
+        {{ path | glide_image }}
+        <figcaption>Caption goes here</figcaption>
+    </figure>
+
+
 {% endblock %}

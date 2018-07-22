@@ -22,14 +22,14 @@ class GlideImageController extends Controller
     }
 
     /**
-     * @Route("/glide/image", name="glide_image")
+     * @Route("/glide/image/{path}", name="glide_image", requirements={"path"=".+"})
      */
-    public function index()
+    public function index($path)
     {
-        $presets = $this->glideServer->getPresets();
 
         return $this->render('glide_image/index.html.twig', [
             'controller_name' => 'GlideImageController',
+            'path' => $path,
         ]);
     }
 

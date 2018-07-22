@@ -48,3 +48,7 @@ services:
 
     League\Glide\Server:
       alias: 'glide.server'
+
+    App\Twig\GlideImageExtension:
+      class: App\Twig\GlideImageExtension
+      tags: ['twig.extension']
