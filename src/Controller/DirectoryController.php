@@ -39,6 +39,7 @@ class DirectoryController extends Controller
 
         return $this->render('directory/index.html.twig', [
             'controller_name' => 'ListController',
+            'directory_name' => '/' . $path,
             'directories' => $directories,
             'images' => $images,
         ]);
@@ -52,6 +53,7 @@ class DirectoryController extends Controller
         return $this->render('directory/image.html.twig', [
             'controller_name' => 'DirectoryController',
             'path' => $path,
+            'image_name' => '/' . $path,
         ]);
     }
 }
