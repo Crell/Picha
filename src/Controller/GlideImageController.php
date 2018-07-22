@@ -20,12 +20,12 @@ class GlideImageController extends Controller
     }
 
     /**
-     * @Route("/glide/image/{path}", name="glide_image", requirements={"path"=".+"})
+     * Route("/glide/image/{path}", name="glide_image", requirements={"path"=".+"})
      */
     public function index($path)
     {
 
-        return $this->render('glide_image/index.html.twig', [
+        return $this->render('image.html.twig', [
             'controller_name' => 'GlideImageController',
             'path' => $path,
         ]);
