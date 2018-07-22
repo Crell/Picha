@@ -27,7 +27,7 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/generated/{imageSize}/{path}", name="generated_image", requirements={"path"=".+"})
+     * Route("/generated/{imageSize}/{path}", name="generated_image", requirements={"path"=".+"})
      */
     public function generatedImage(string $imageSize, string $path)
     {

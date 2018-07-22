@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use League\Glide\Server;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use League\Glide\ServerFactory;
@@ -14,13 +15,39 @@ class GlideImageController extends Controller
      */
     public function index()
     {
+        $server = $this->getGlideServer();
+
+        $presets = $server->getPresets();
+
+        return $this->render('glide_image/index.html.twig', [
+            'controller_name' => 'GlideImageController',
+        ]);
+    }
+
+    /**
+     * @Route("/generated/{preset}/{path}", name="generated_image", requirements={"path"=".+"})
+     */
+    public function generatedImage(string $preset, string $path)
+    {
+
+        $server = $this->getGlideServer();
+
+        $response = $server->getImageResponse($path, [
+            'p' => $preset,
+        ]);
+
+        return $response;
+    }
+
+    public function getGlideServer() : Server
+    {
         $sourceDir = $this->container->getParameter('image_sources')[0];
         $cacheDir = $this->container->getParameter('kernel.cache_dir');
 
         $server = ServerFactory::create([
             'response' => new SymfonyResponseFactory(),
             'source' => $sourceDir,
-            'cache' => $cacheDir,
+            'cache' => $cacheDir . '/glide',
         ]);
 
         $server->setPresets([
@@ -34,18 +61,7 @@ class GlideImageController extends Controller
             ]
         ]);
 
-        $presets = $server->getPresets();
-
-        $path = 'Blades/IMG_20180711_164352.jpg';
-
-        $response = $server->getImageResponse($path, [
-            'p' => 'medium',
-        ]);
-
-        return $response;
-
-        return $this->render('glide_image/index.html.twig', [
-            'controller_name' => 'GlideImageController',
-        ]);
+        return $server;
     }
+
 }
