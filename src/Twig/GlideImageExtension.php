@@ -77,26 +77,31 @@ class GlideImageExtension extends AbstractExtension
      *
      * @return string
      */
-    public function glideImageFilter($imageUrl, int $width = null, array $allowedPresets = [])
+    public function glideImageFilter($imageUrl, int $width = null, array $allowedPresets = []) : string
     {
-        $srcsets = [];
+        // It would be better to include the src tag too, but we need a direct route to the raw image then.
+        // @todo Add that.
+
+
+        $image = new ImageTag();
+
         $largestWidth = 0;
         foreach ($this->getPresetList($allowedPresets) as $preset => $info) {
             $url = $this->generator->generate('generated_image', [
                 'preset' => $preset,
                 'path' => $imageUrl,
             ]);
-            $srcsets[] = sprintf('%s %dw', $url, $info['w']);
+            $image->addSrcSet(sprintf('%s %dw', $url, $info['w']));
+            $image->addSize();
             //$sizes[] = sprintf('(min-width: %spx) %spx', $info['w'], $info['w']);
             $largestWidth = max($info['w'], $largestWidth);
         }
 
-        $width = $width ?? $largestWidth;
+        if ($width) {
+            $image->setWidth($width);
+        }
 
-        return sprintf('<img srcset="%s" sizes="%dpx" width="%dpx" />', implode(', ', $srcsets), $width, $width);
-        // It would be better to include the src tag too, but we need a direct route to the raw image then.
-        // @todo Add that.
-        //return sprintf('<img src="%s" srcset="%s" />', $imageUrl, implode(', ', $srcsets));
+        return (string)$image;
     }
 
     /**
@@ -105,5 +110,90 @@ class GlideImageExtension extends AbstractExtension
     public function getName()
     {
         return 'glide';
+    }
+}
+
+class ImageTag
+{
+    /**
+     * @var array
+     */
+    protected $srcsets = [];
+
+    /**
+     * @var array
+     */
+    protected $sizes = [];
+
+    /**
+     * @var int
+     */
+    protected $width = 0;
+
+    /**
+     * @var int
+     */
+    protected $src = 0;
+
+    /**
+     * @var string
+     */
+    protected $alt = '';
+
+    public function setSrc(string $src) : self
+    {
+        $this->src = $src;
+        return $this;
+    }
+
+    public function addSrcSet(string $srcset) : self
+    {
+        $this->srcsets[] = $srcset;
+        return $this;
+    }
+
+    public function addSize(string $size) : self
+    {
+        $this->sizes[] = $size;
+        return $this;
+    }
+
+    public function setWidth(int $width) : self
+    {
+        $this->width = $width;
+        return $this;
+    }
+
+    public function setAlt(string $alt) : self
+    {
+        $this->alt = $alt;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        $attributes = [];
+
+        if ($this->src) {
+            $attributes[] = "src=\"{$this->src}\"";
+        }
+
+        if ($this->srcsets) {
+            $attributes[] = sprintf('srcset="%s"', implode(', ', $this->srcsets));
+        }
+
+        if ($this->sizes) {
+            $attributes[] = sprintf('sizes="%s"', implode(', ', $this->sizes));
+        }
+
+        if ($this->width) {
+            $attributes[] = "width=\"{$this->width}px\"";
+        }
+
+        if ($this->alt) {
+            $attributes[] = "alt=\"{$this->alt}\"";
+        }
+
+        return '<img ' . implode(' ', $attributes) . '/>';
     }
 }
