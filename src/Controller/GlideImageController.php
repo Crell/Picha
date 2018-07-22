@@ -10,14 +10,23 @@ use League\Glide\Responses\SymfonyResponseFactory;
 
 class GlideImageController extends Controller
 {
+
+    /**
+     * @var Server
+     */
+    protected $glideServer;
+
+    public function __construct(Server $glideServer)
+    {
+        $this->glideServer = $glideServer;
+    }
+
     /**
      * @Route("/glide/image", name="glide_image")
      */
     public function index()
     {
-        $server = $this->getGlideServer();
-
-        $presets = $server->getPresets();
+        $presets = $this->glideServer->getPresets();
 
         return $this->render('glide_image/index.html.twig', [
             'controller_name' => 'GlideImageController',
@@ -29,39 +38,10 @@ class GlideImageController extends Controller
      */
     public function generatedImage(string $preset, string $path)
     {
-
-        $server = $this->getGlideServer();
-
-        $response = $server->getImageResponse($path, [
+        $response = $this->glideServer->getImageResponse($path, [
             'p' => $preset,
         ]);
 
         return $response;
     }
-
-    public function getGlideServer() : Server
-    {
-        $sourceDir = $this->container->getParameter('image_sources')[0];
-        $cacheDir = $this->container->getParameter('kernel.cache_dir');
-
-        $server = ServerFactory::create([
-            'response' => new SymfonyResponseFactory(),
-            'source' => $sourceDir,
-            'cache' => $cacheDir . '/glide',
-        ]);
-
-        $server->setPresets([
-            'small' => [
-                'w' => 200,
-                'h' => 200,
-            ],
-            'medium' => [
-                'w' => 600,
-                'h' => 400,
-            ]
-        ]);
-
-        return $server;
-    }
-
 }
