@@ -27,7 +27,9 @@
 
     <ul class="images">
         {% for image in images %}
-            <li>{{ image.path | glide_image(200, ['small', 'medium']) }}</li>
+            <li><a href="{{ path('glide_image', {'path': image.path}) }}">
+                {{ image.path | glide_image(200, ['small', 'medium']) }}
+            </a></li>
         {% endfor %}
     </ul>
 
