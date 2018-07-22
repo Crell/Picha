@@ -55,9 +55,9 @@ class PichaGlideFactory
 
         $server->setPresets([
             'small' => [
-                'w' => 200,
-                'h' => 200,
-                'filt' => 'sepia',
+                'w' => 320,
+                'h' => 240,
+                #'filt' => 'greyscale',
             ],
             'medium' => [
                 'w' => 640,
