@@ -69,6 +69,11 @@ class PichaGlideFactory
                 'h' => 768,
                 'filt' => 'greyscale',
             ],
+            'huge' => [
+                'w' => 2048,
+                'h' => 768*2,
+//                'filt' => 'greyscale',
+            ],
         ]);
 
         return $server;
