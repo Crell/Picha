@@ -38,7 +38,7 @@ class PichaGlideFactory
         //$this->container = $container;
         // Normalize to a single trailing slash so that it doesn't break mysteriously if the user
         // omits the slash.
-        $this->imageSourceDir = trim($imageSourceDir, '/') . '/';
+        $this->imageSourceDir = rtrim($imageSourceDir, '/') . '/';
 
         $this->imageCacheDir = $kernelCacheDir . '/' . static::CACHE_SUBDIR;
         $this->responseFactory = $responseFactory;
@@ -50,17 +50,25 @@ class PichaGlideFactory
             'response' => $this->responseFactory,
             'source' => $this->imageSourceDir,
             'cache' => $this->imageCacheDir,
+            //'driver' => 'imagick',
         ]);
 
         $server->setPresets([
             'small' => [
                 'w' => 200,
                 'h' => 200,
+                'filt' => 'sepia',
             ],
             'medium' => [
-                'w' => 600,
-                'h' => 400,
-            ]
+                'w' => 640,
+                'h' => 480,
+                'filt' => 'sepia',
+            ],
+            'large' => [
+                'w' => 1024,
+                'h' => 768,
+                'filt' => 'greyscale',
+            ],
         ]);
 
         return $server;

@@ -55,7 +55,10 @@ class GlideImageExtension extends AbstractExtension
             $srcsets[] = sprintf('%s %dw', $url, $info['w']);
         }
 
-        return sprintf('<img src="%s" srcset="%s" />', $imageUrl, implode(', ', $srcsets));
+        return sprintf('<img srcset="%s" />', implode(', ', $srcsets));
+        // It would be better to include the src tag too, but we need a direct route to the raw image then.
+        // @todo Add that.
+        //return sprintf('<img src="%s" srcset="%s" />', $imageUrl, implode(', ', $srcsets));
     }
 
     /**

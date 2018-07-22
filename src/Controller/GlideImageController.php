@@ -5,8 +5,6 @@ namespace App\Controller;
 use League\Glide\Server;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use League\Glide\ServerFactory;
-use League\Glide\Responses\SymfonyResponseFactory;
 
 class GlideImageController extends Controller
 {
