@@ -42,12 +42,24 @@ class GlideImageExtension extends AbstractExtension
      *
      * @return string
      */
-    public function glideImageSourceFilter($imageUrl)
+    public function glideImageSourceFilter($imageUrl, array $allowedPresets = [])
     {
         $presets = $this->glideServer->getPresets();
 
-        foreach ($presets as $preset => $info) {
+        $filteredPresets = function () use ($presets, $allowedPresets) {
+            foreach ($presets as $preset => $info) {
+                if (!array_key_exists('w', $info)) {
+                    continue;
+                }
+                if ($allowedPresets && !in_array($preset, $allowedPresets)) {
+                    continue;
+                }
+                yield $preset => $info;
+            }
+        };
 
+        $srcsets = [];
+        foreach ($filteredPresets() as $preset => $info) {
             $url = $this->generator->generate('generated_image', [
                 'preset' => $preset,
                 'path' => $imageUrl,
