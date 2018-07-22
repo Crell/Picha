@@ -16,13 +16,13 @@ class ImageController extends Controller
     public function index(string $path)
     {
 
-        $imageSizes = $this->container->getParameter('image_sizes');
+//        $imageSizes = $this->container->getParameter('image_sizes');
 
-        $image = new ImageElement($path, $imageSizes, $this->container->get('router'));
+//        $image = new ImageElement($path, $imageSizes, $this->container->get('router'));
 
         return $this->render('image/index.html.twig', [
             'controller_name' => 'ImageController',
-            'image' => $image,
+            'image' => '@' . $path,
         ]);
     }
 

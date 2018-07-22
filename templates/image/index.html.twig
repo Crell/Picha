@@ -18,12 +18,19 @@
     </ul>
 </div>
 
+
+    {#
     <figure>
         <img srcset="{{ image.srcset }}" alt="{{ image.altText }}" />
         {% if image.caption %}
             <figcaption>{{ image.caption }}</figcaption>
         {% endif %}
     </figure>
+#}
+    <picture>
+        {{ image | responsive_image_source([750, 380, 504, 252], {'filterset': 'medium'}) }}
+        <img srcset="{{ image | imagine_filter('medium') }}" alt="" class="img-responsive" />
+    </picture>
 
     {#{{ include('picture.html.twig', {'picture': picture }) }}#}
 
