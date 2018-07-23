@@ -77,29 +77,34 @@ class GlideImageExtension extends AbstractExtension
      *
      * @return string
      */
-    public function glideImageFilter($imageUrl, int $width = null, array $allowedPresets = []) : string
+    public function glideImageFilter($imageUrl, array $config = []) : string
     {
         // It would be better to include the src tag too, but we need a direct route to the raw image then.
         // @todo Add that.
 
+        $config += [
+            'width' => 0,
+            'presets' => [],
+            'sizes' => [],
+        ];
+
+        $allowedPresets = $config['presets'];
+        $width = $config['width'];
+        $sizes = $config['sizes'];
 
         $image = new ImageTag();
 
-        $largestWidth = 0;
         foreach ($this->getPresetList($allowedPresets) as $preset => $info) {
             $url = $this->generator->generate('generated_image', [
                 'preset' => $preset,
                 'path' => $imageUrl,
             ]);
             $image->addSrcSet(sprintf('%s %dw', $url, $info['w']));
-            $image->addSize();
-            //$sizes[] = sprintf('(min-width: %spx) %spx', $info['w'], $info['w']);
-            $largestWidth = max($info['w'], $largestWidth);
         }
 
-        if ($width) {
-            $image->setWidth($width);
-        }
+        $image
+            ->setWidth($width)
+            ->addSizes($sizes);
 
         return (string)$image;
     }
@@ -155,6 +160,12 @@ class ImageTag
     public function addSize(string $size) : self
     {
         $this->sizes[] = $size;
+        return $this;
+    }
+
+    public function addSizes(array $sizes) : self
+    {
+        $this->sizes = array_merge($this->sizes, $sizes);
         return $this;
     }
 

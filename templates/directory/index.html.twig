@@ -2,20 +2,31 @@
 
 {% block title %}Showing {{ directory_name }}{% endblock %}
 
-{% block body %}
-<style>
-    /*.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }*/
-    /*.example-wrapper code { background: #F5F5F5; padding: 2px 6px; }*/
-    ul.images {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-    }
-    ul.images li {
-        margin: 5px;
-    }
+{% block stylesheets %}
+    <style>
 
-</style>
+        ul.images {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        ul.images > li {
+
+        }
+
+        ul.images img {
+            /*max-width: 250px;*/
+            padding: 5px;
+        }
+
+        ul.images img:hover {
+            background: green;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
 
     <ul class="directories">
     {% for directory in directories %}
@@ -26,7 +37,13 @@
     <ul class="images">
         {% for image in images %}
             <li><a href="{{ path('glide_image', {'path': image.path}) }}">
-                {{ image.path | glide_image(200, ['small', 'medium']) }}
+                {{ image.path | glide_image({
+                    'presets': ['small', 'medium', 'large'],
+                    'sizes': [
+                        'calc(25vw)',
+                    ],
+                    })
+                }}
             </a></li>
         {% endfor %}
     </ul>
