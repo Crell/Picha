@@ -2,16 +2,32 @@
 
 {% block title %}Showing {{ image_name }}{% endblock %}
 
+
+{% block stylesheets %}
+    <style>
+        figure {
+            display: grid;
+            height: 100%;
+        }
+
+        figure img {
+            max-width: 100%;
+            max-height: calc(100vh - 3em);
+            margin: auto;
+        }
+
+        figcaption {
+            text-align: center;
+            margin-top: 1em;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
     <figure>
-        {{ path | glide_image }}
+        {{ path | glide_image({'sizes': ['100vw']}) }}
         <figcaption>Caption goes here</figcaption>
     </figure>
-
 
 {% endblock %}
