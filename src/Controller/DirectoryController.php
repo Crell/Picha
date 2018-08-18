@@ -34,7 +34,7 @@ class DirectoryController extends Controller
 
         $images = array_filter($list, function($item) {
             return $item['type'] == 'file'
-                && in_array(strtolower($item['extension']), ['jpg', 'png', 'gif', 'webp']);
+                && in_array(strtolower($item['extension']), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
         });
 
         return $this->render('directory/index.html.twig', [
