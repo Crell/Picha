@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class ImageController extends Controller
 {
     /**
-     * @Route("/image/{path}", name="image", requirements={"path"=".+"})
+     * Route("/image/{path}", name="image", requirements={"path"=".+"})
      */
     public function index(string $path)
     {
