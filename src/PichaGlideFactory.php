@@ -14,11 +14,6 @@ class PichaGlideFactory
     const CACHE_SUBDIR = 'glide';
 
     /**
-     * @var Container
-     */
-    protected $container;
-
-    /**
      * @var string
      */
     protected $imageSourceDir;
