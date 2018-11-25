@@ -6,12 +6,19 @@
     <style>
 
         ul.images {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            /*grid-gap: 5px;*/
             list-style: none;
-        }
-        ul.images > li {
 
+            /*width: 90%;*/
+        }
+
+        ul.images > li {
+            text-align: center;
+            border: 1px dotted red;
+            margin: 0;
+            padding: 0;
         }
 
         ul.images img {
@@ -23,6 +30,17 @@
             background: green;
         }
 
+
+        ul.directories {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        img.directory-icon {
+            width: 15vw;
+        }
+
     </style>
 {% endblock %}
 
@@ -30,7 +48,13 @@
 
     <ul class="directories">
     {% for directory in directories %}
-        <li><a href="{{ path('imagedir', {'path': directory.path}) }}">{{ directory.path }}</a></li>
+        <li>
+            <a href="{{ path('imagedir', {'path': directory.path}) }}">
+                <figure class="directory">
+                    <img src="{{ asset('icons/twotone-folder_open-24px.svg') }}" alt="{{ directory.basename}}" class="directory-icon" />
+                    <figcaption>{{ directory.basename }}</figcaption>
+                </figure>
+            </a></li>
     {% endfor %}
     </ul>
 
@@ -40,7 +64,7 @@
                 {{ image.path | glide_image({
                     'presets': ['small', 'medium', 'large'],
                     'sizes': [
-                        'calc(25vw)',
+                        'calc(20vw)',
                     ],
                     })
                 }}
