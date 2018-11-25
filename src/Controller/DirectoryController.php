@@ -20,6 +20,8 @@ class DirectoryController extends Controller
     }
 
     /**
+     * This is the route for listing a directory.
+     *
      * @Route("/dir/{path}", name="imagedir", requirements={"path"=".+"})
      */
     public function index(string $path = '')
@@ -46,6 +48,8 @@ class DirectoryController extends Controller
     }
 
     /**
+     * This is the route for an individual image's page.
+     *
      * @Route("/image/{path}", name="glide_image", requirements={"path"=".+"})
      */
     public function image($path)

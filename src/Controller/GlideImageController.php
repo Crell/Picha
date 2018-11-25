@@ -20,6 +20,8 @@ class GlideImageController extends Controller
     }
 
     /**
+     * This is the route for generating a specific image's variant.
+     *
      * @Route("/generated/{preset}/{path}", name="generated_image", requirements={"path"=".+"})
      */
     public function generatedImage(string $preset, string $path)
