@@ -34,11 +34,14 @@ class DirectoryController extends Controller
 
         $images = $this->filterImages($list);
 
+        $parentDir = $path != '.' ? dirname($path) : '';
+
         return $this->render('directory/index.html.twig', [
             'controller_name' => 'ListController',
             'directory_name' => '/' . $path,
             'directories' => $directories,
             'images' => $images,
+            'dir' => $parentDir,
         ]);
     }
 

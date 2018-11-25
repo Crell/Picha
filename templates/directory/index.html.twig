@@ -36,10 +36,38 @@
             width: 15vw;
         }
 
+
+        nav.prevnext > ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav.prevnext a {
+            text-decoration: none;
+            color: blue;
+            background-color: lightgreen;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        a.album-link:before {
+            content: '^ ';
+        }
     </style>
 {% endblock %}
 
 {% block body %}
+
+    <nav class="prevnext">
+        <ul>
+            <li>
+                {% if (dir) %}
+                    <a class="album-link" href="{{ path('imagedir', {'path': dir}) }}">Album</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
 
     <ul class="directories">
     {% for directory in directories %}
