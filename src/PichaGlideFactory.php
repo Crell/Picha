@@ -57,12 +57,12 @@ class PichaGlideFactory
             'medium' => [
                 'w' => 640,
                 'h' => 480,
-                'filt' => 'sepia',
+                # 'filt' => 'sepia',
             ],
             'large' => [
                 'w' => 1024,
                 'h' => 768,
-                'filt' => 'greyscale',
+                # 'filt' => 'greyscale',
             ],
             'huge' => [
                 'w' => 2048,
