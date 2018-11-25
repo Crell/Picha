@@ -20,10 +20,55 @@
             text-align: center;
             margin-top: 1em;
         }
+
+        nav.prevnext > ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        nav.prevnext a {
+            text-decoration: none;
+            color: blue;
+            background-color: lightgreen;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        a.prev-link:before {
+            content: '< ';
+        }
+        a.album-link:before {
+            content: '^ ';
+        }
+        a.next-link:after {
+            content: ' >';
+        }
+
     </style>
 {% endblock %}
 
 {% block body %}
+
+    <nav class="prevnext">
+        <ul>
+            <li>
+                {% if (prev) %}
+                    <a class="prev-link" href="{{ path('glide_image', {'path': prev}) }}">Prev</a>
+                {% endif %}
+            </li>
+            <li>
+                {% if (dir) %}
+                    <a class="album-link" href="{{ path('imagedir', {'path': dir}) }}">Album</a>
+                {% endif %}
+            </li>
+            <li>
+                {% if (next) %}
+                    <a class="next-link" href="{{ path('glide_image', {'path': next}) }}">Next</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
 
     <figure>
         {{ path | glide_image({'sizes': ['100vw']}) }}

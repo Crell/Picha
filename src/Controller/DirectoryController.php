@@ -30,14 +30,9 @@ class DirectoryController extends Controller
 
         $list = $source->listContents($path);
 
-        $directories = array_filter($list, function($item) {
-            return $item['type'] == 'dir';
-        });
+        $directories = $this->filterDirectories($list);
 
-        $images = array_filter($list, function($item) {
-            return $item['type'] == 'file'
-                && in_array(strtolower($item['extension']), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-        });
+        $images = $this->filterImages($list);
 
         return $this->render('directory/index.html.twig', [
             'controller_name' => 'ListController',
@@ -56,11 +51,60 @@ class DirectoryController extends Controller
     {
         $directory = dirname($path);
 
+        $images = $this->filterImages($this->glideServer->getSource()->listContents($directory));
 
-        return $this->render('directory/image.html.twig', [
+        $prev = '';
+        $next = '';
+        foreach ($images as $i => $image) {
+            if ($image['path'] == $path) {
+                if (array_key_exists($i + 1, $images)) {
+                    $next = $images[$i + 1]['path'];
+                    break;
+                }
+            }
+            $prev = $image['path'];
+        }
+
+        $response = $this->render('directory/image.html.twig', [
             'controller_name' => 'DirectoryController',
             'path' => $path,
             'image_name' => '/' . $path,
+            'prev' => $prev,
+            'next' => $next,
+            'dir' => $directory,
         ]);
+
+        return $response;
+    }
+
+    /**
+     * Returns just the directories from a list of Glide file entries.
+     *
+     * @param array $list
+     *   A list of directory records from Glide. These are nested arrays.
+     * @return array
+     *   Just those file records that are directories.
+     */
+    protected function filterDirectories(array $list) : array
+    {
+        return array_values(array_filter($list, function($item) {
+            return $item['type'] == 'dir';
+        }));
+    }
+
+    /**
+     * Returns just the image files from a list of Glide file entries.
+     *
+     * @param array $list
+     *   A list of file records from Glide. These are nested arrays.
+     * @return array
+     *   Just those file records that are images.
+     */
+    protected function filterImages(array $list) : array
+    {
+        return array_values(array_filter($list, function($item) {
+            return $item['type'] == 'file'
+                && in_array(strtolower($item['extension']), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+        }));
     }
 }
