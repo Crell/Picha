@@ -8,28 +8,23 @@
         ul.images {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            /*grid-gap: 5px;*/
             list-style: none;
-
-            /*width: 90%;*/
         }
 
         ul.images > li {
             text-align: center;
-            border: 1px dotted red;
             margin: 0;
             padding: 0;
         }
 
         ul.images img {
-            /*max-width: 250px;*/
             padding: 5px;
         }
 
-        ul.images img:hover {
+        ul.images img:hover,
+        ul.directories img:hover {
             background: green;
         }
-
 
         ul.directories {
             list-style: none;
