@@ -54,6 +54,9 @@ class DirectoryController extends Controller
      */
     public function image($path)
     {
+        $directory = dirname($path);
+
+
         return $this->render('directory/image.html.twig', [
             'controller_name' => 'DirectoryController',
             'path' => $path,
