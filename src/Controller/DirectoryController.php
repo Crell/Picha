@@ -20,6 +20,14 @@ class DirectoryController extends Controller
     }
 
     /**
+     * @Route("/")
+     */
+    public function homepage()
+    {
+        return $this->redirect('/dir');
+    }
+
+    /**
      * This is the route for listing a directory.
      *
      * @Route("/dir/{path}", name="imagedir", requirements={"path"=".+"})
