@@ -1,13 +1,21 @@
 security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        in_memory:
+            memory:
+                users:
+                    crell: { password: '%env(APP_PASSWORD)%' }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            http_basic:
+                provider: in_memory
+            stateless: true
+            #anonymous: true
 
             # activate different ways to authenticate
 
