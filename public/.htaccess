@@ -66,3 +66,6 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
