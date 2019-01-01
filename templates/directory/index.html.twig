@@ -6,8 +6,10 @@
     <style>
 
         ul.images {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            /*grid-template-columns: 1fr 1fr 1fr 1fr;*/
             list-style: none;
         }
 
@@ -28,12 +30,19 @@
 
         ul.directories {
             list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
         }
 
         img.directory-icon {
-            width: 15vw;
+            width: 200px;
+        }
+
+        @media (max-width : 640px) {
+            img.directory-icon {
+                width: 100px;
+            }
         }
 
 
