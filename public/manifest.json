@@ -1,0 +1,23 @@
+{
+    "name": "Picha - GarfieldTech",
+    "short_name": "Picha",
+    "lang": "en-US",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "white",
+    "theme_color": "white",
+    "icons": [
+        {
+            "src": "/icons/picha-192.png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/icons/picha-512.png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/icons/picha.svg",
+            "sizes": "any"
+        }
+    ]
+}
