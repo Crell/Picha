@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use League\Glide\Server;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DirectoryController extends Controller
+class DirectoryController extends AbstractController
 {
 
     /**
