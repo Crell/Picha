@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-
+/**
+ * Domain model of an HTML Image tag.
+ *
+ * This is mainly to make dynamically building image tags in templates more ergonomic.
+ */
 class ImageTag
 {
     /**

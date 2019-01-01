@@ -7,8 +7,10 @@ namespace App;
 use League\Glide\Responses\ResponseFactoryInterface;
 use League\Glide\Server;
 use League\Glide\ServerFactory;
-use Symfony\Component\DependencyInjection\Container;
 
+/**
+ * Factory for a Glide server, configured by Symfony.
+ */
 class PichaGlideFactory
 {
     const CACHE_SUBDIR = 'glide';
@@ -30,7 +32,6 @@ class PichaGlideFactory
 
     public function __construct(string $imageSourceDir, string $kernelCacheDir, ResponseFactoryInterface $responseFactory)
     {
-        //$this->container = $container;
         // Normalize to a single trailing slash so that it doesn't break mysteriously if the user
         // omits the slash.
         $this->imageSourceDir = rtrim($imageSourceDir, '/') . '/';
@@ -48,6 +49,8 @@ class PichaGlideFactory
             //'driver' => 'imagick',
         ]);
 
+        // @todo There should be some way to push this to a YAML file, but I don't know what yet.
+        // Needs some Symfony research.
         $server->setPresets([
             'small' => [
                 'w' => 320,
@@ -68,6 +71,10 @@ class PichaGlideFactory
                 'w' => 2048,
                 'h' => 768*2,
 //                'filt' => 'greyscale',
+            ],
+            'mega' => [
+                'w' => 2048*2,
+                'h' => 768*4,
             ],
         ]);
 

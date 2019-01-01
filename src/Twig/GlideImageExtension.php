@@ -74,9 +74,14 @@ class GlideImageExtension extends AbstractExtension
     }
 
     /**
+     * Creates an image tag using srcset via Glide.
+     *
      * @param string $imageUrl
+     *   The URL to the native image.  It will be processed to glide variants
+     *   automatically.
      *
      * @return string
+     *   A formatted image tag.
      */
     public function glideImageFilter($imageUrl, array $config = []) : string
     {
@@ -84,8 +89,11 @@ class GlideImageExtension extends AbstractExtension
         // @todo Add that.
 
         $config += [
+            // The image tag's width.
             'width' => 0,
+            // Which defined presets to use.  If not specified, all defined presets will be used.
             'presets' => [],
+            // The size steps to define for this image.
             'sizes' => [],
         ];
 
