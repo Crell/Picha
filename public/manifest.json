@@ -8,6 +8,10 @@
     "theme_color": "white",
     "icons": [
         {
+            "src": "/icons/picha-32.png",
+            "sizes": "32x32"
+        },
+        {
             "src": "/icons/picha-192.png",
             "sizes": "192x192"
         },
