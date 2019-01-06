@@ -2,57 +2,6 @@
 
 {% block title %}Showing {{ image_name }}{% endblock %}
 
-
-{% block stylesheets %}
-    <style>
-
-        body {
-            font-size: 16px;
-        }
-
-        figure {
-            display: grid;
-            height: 100%;
-        }
-
-        figure img {
-            max-width: 100%;
-            max-height: calc(100vh - 3em);
-            margin: auto;
-        }
-
-        figcaption {
-            text-align: center;
-            margin-top: 1em;
-        }
-
-        nav.prevnext > ul {
-            display: flex;
-            justify-content: space-between;
-            list-style: none;
-        }
-
-        nav.prevnext a {
-            text-decoration: none;
-            color: blue;
-            background-color: lightgreen;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        a.prev-link:before {
-            content: '< ';
-        }
-        a.album-link:before {
-            content: '^ ';
-        }
-        a.next-link:after {
-            content: ' >';
-        }
-
-    </style>
-{% endblock %}
-
 {% block body %}
 
     <nav class="prevnext">

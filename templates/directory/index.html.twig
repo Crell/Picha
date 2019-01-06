@@ -5,73 +5,11 @@
 {% block stylesheets %}
     <style>
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-        }
-
-        ul.images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            /*grid-template-columns: 1fr 1fr 1fr 1fr;*/
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul.images > li {
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul.images img {
-            padding: 5px;
-        }
-
-        ul.images img:hover,
-        ul.directories img:hover {
-            background: green;
-        }
-
-        ul.directories {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin: 0;
-            padding: 0;
-        }
-
-        img.directory-icon {
-            width: 150px;
-        }
-
-        @media (max-width : 640px) {
-            img.directory-icon {
-                width: 100px;
-            }
-        }
-
+        /* Albums have only one link, so center it. */
         nav.prevnext > ul {
-            display: flex;
             justify-content: center;
-            list-style: none;
         }
 
-        nav.prevnext a {
-            text-decoration: none;
-            color: blue;
-            background-color: lightgreen;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        a.album-link:before {
-            content: '^ ';
-        }
     </style>
 {% endblock %}
 
