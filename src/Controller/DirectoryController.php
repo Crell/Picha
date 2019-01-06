@@ -66,17 +66,14 @@ class DirectoryController extends AbstractController
 
         $images = $this->filterImages($this->glideServer->getSource()->listContents($directory));
 
-        $prev = '';
-        $next = '';
-        foreach ($images as $i => $image) {
-            if ($image['path'] == $path) {
-                if (array_key_exists($i + 1, $images)) {
-                    $next = $images[$i + 1]['path'];
-                    break;
-                }
-            }
-            $prev = $image['path'];
-        }
+        // Compute the next/prev images based on the current image.
+        // We can't use array_search() here because $images is an array of arrays,
+        // not just the values to check.
+        $imageIndex = key(array_filter($images, function($image, $key) use ($path) {
+            return $image['path'] == $path;
+        }, ARRAY_FILTER_USE_BOTH));
+        $prev = $images[$imageIndex - 1]['path'] ?? '';
+        $next = $images[$imageIndex + 1]['path'] ?? '';
 
         $response = $this->render('directory/image.html.twig', [
             'controller_name' => 'DirectoryController',
