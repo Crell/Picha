@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="manifest" href="/manifest.json">
+        <link rel="manifest" href="{{ asset('manifest.json') }}">
         <meta name="theme-color" content="white"/>
 
-        <link rel="icon" type="image/png" href="/icons/picha-32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="/icons/picha-192.png" sizes="192x192">
-        <link rel="icon" type="image/png" href="/icons/picha-512.png" sizes="512x512">
+        <link rel="icon" type="image/png" href="{{ asset('icons/picha-32.png') }}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{{ asset('icons/picha-192.png') }}" sizes="192x192">
+        <link rel="icon" type="image/png" href="{{ asset('icons/picha-512.png') }}" sizes="512x512">
 
-        <link rel="stylesheet" href="/styles/styles.css">
-
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}">
+        {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
