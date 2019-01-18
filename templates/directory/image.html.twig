@@ -2,6 +2,21 @@
 
 {% block title %}Showing {{ image_name }}{% endblock %}
 
+{% block headers %}
+
+    {% if (prev) %}
+        <link rel="prev" href="{{ path('glide_image', {'path': prev}) }}" />
+    {% endif %}
+    {% if (dir) %}
+        <link rel="up" href="{{ path('imagedir', {'path': dir}) }}" />
+    {% endif %}
+
+    {% if (next) %}
+        <link rel="next" href="{{ path('glide_image', {'path': next}) }}" />
+    {% endif %}
+
+{% endblock %}
+
 {% block body %}
 
     <nav class="prevnext">

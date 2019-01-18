@@ -11,6 +11,9 @@
         <link rel="icon" type="image/png" href="{{ asset('icons/picha-192.png') }}" sizes="192x192">
         <link rel="icon" type="image/png" href="{{ asset('icons/picha-512.png') }}" sizes="512x512">
 
+        {% block headers %}
+        {% endblock %}
+
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ preload('/styles/styles.css') }}">
         {% endblock %}

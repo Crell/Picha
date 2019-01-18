@@ -2,6 +2,14 @@
 
 {% block title %}Showing {{ directory_name }}{% endblock %}
 
+{% block headers %}
+
+    {% if (dir) %}
+        <link rel="up" href="{{ path('imagedir', {'path': dir}) }}" />
+    {% endif %}
+
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <style>
