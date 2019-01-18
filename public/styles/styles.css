@@ -1,22 +1,29 @@
 
+/* Most content should be full screen. */
 body {
     margin: 0;
     padding: 0;
     font-size: 16px;
 }
 
-figure {
+body.image figure {
     display: grid;
-    height: 100%;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
-figure img {
+body.image figure > img {
     max-width: 100%;
-    max-height: calc(100vh - 3em);
-    margin: auto;
+    max-height: 100%;
+    object-fit: contain;
 }
 
-figcaption {
+body.image figcaption {
+    display: none;
     text-align: center;
     margin-top: 1em;
 }
