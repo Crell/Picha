@@ -72,16 +72,79 @@ img.directory-icon {
     }
 }
 
+/* Navigation links on image pages. */
+
+body.image nav.prevnext ul {
+    z-index: 5;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 6em 1fr 6em;
+    grid-template-areas: "prev up next";
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body.image nav.prevnext li.prev-link-item {
+    grid-area: prev;
+    align-self: center;
+}
+
+body.image nav.prevnext li.next-link-item {
+    grid-area: next;
+    align-self: center;
+    justify-self: right;
+}
+
+body.image nav.prevnext li.album-link-item {
+    grid-area: up;
+    justify-self: center;
+    /* This causes a slight gap at the top of the link's background, which I'm not sure how to fix yet. */
+    padding-top: 0.5em;
+}
+
+body.image nav.prevnext li {
+}
+
+body.image nav.prevnext a {
+    background-color: rgba(211, 211, 211, 0.25);
+    border-radius: 5px;
+    text-decoration: none;
+    color: blue;
+}
+
+body.image nav.prevnext a:hover {
+    background-color: rgba(211, 211, 211, 0.5);
+}
+
+body.image nav.prevnext a.next-link,
+body.image nav.prevnext a.prev-link {
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+}
+
+body.image nav.prevnext a.album-link {
+    padding: 5px;
+    padding-left: 25vw;
+    padding-right: 25vw;
+}
+
 /* Prev/Next link bar */
 
-nav.prevnext > ul {
+body.directory nav.prevnext > ul {
     list-style: none;
     display: flex;
-    /* This will get overridden for the listing pages. */
     justify-content: space-between;
 }
 
-nav.prevnext a {
+/* Albums have only one link, so center it. */
+body.directory nav.prevnext > ul {
+    justify-content: center;
+}
+
+body.directory nav.prevnext a {
     text-decoration: none;
     color: blue;
     background-color: lightgreen;

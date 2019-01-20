@@ -30,17 +30,17 @@
 
     <nav class="prevnext">
         <ul>
-            <li>
+            <li class="prev-link-item">
                 {% if (prev) %}
                     <a class="prev-link" href="{{ path('glide_image', {'path': prev}) }}">Prev</a>
                 {% endif %}
             </li>
-            <li>
+            <li class="album-link-item">
                 {% if (dir) %}
                     <a class="album-link" href="{{ path('imagedir', {'path': dir}) }}">Album</a>
                 {% endif %}
             </li>
-            <li>
+            <li class="next-link-item">
                 {% if (next) %}
                     <a class="next-link" href="{{ path('glide_image', {'path': next}) }}">Next</a>
                 {% endif %}
