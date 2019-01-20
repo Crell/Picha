@@ -14,6 +14,7 @@ body.image figure {
     width: 100vw;
     margin: 0;
     padding: 0;
+    background-color: black;
 }
 
 body.image figure > img {
@@ -112,7 +113,7 @@ body.image nav.prevnext a {
     background-color: rgba(211, 211, 211, 0.25);
     border-radius: 5px;
     text-decoration: none;
-    color: blue;
+    color: whitesmoke;
 }
 
 body.image nav.prevnext a:hover {
@@ -131,7 +132,7 @@ body.image nav.prevnext a.album-link {
     padding-right: 25vw;
 }
 
-/* Prev/Next link bar */
+/* Prev/Next link bar on directory pages */
 
 body.directory nav.prevnext > ul {
     list-style: none;
