@@ -114,6 +114,7 @@ class DirectoryController extends AbstractController
     {
         return array_values(array_filter($list, function($item) {
             return $item['type'] == 'file'
+                && isset($item['extension'])
                 && in_array(strtolower($item['extension']), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
         }));
     }
