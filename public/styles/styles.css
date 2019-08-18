@@ -4,6 +4,10 @@ body {
     margin: 0;
     padding: 0;
     font-size: 16px;
+
+    --image-text-color: whitesmoke;
+    --overlay-bg-color: rgba(211, 211, 211, 0.25);
+    --overlay-z-index: 5;
 }
 
 body.image figure {
@@ -24,9 +28,14 @@ body.image figure > img {
 }
 
 body.image figcaption {
-    display: none;
+    /*display: none;*/
     text-align: center;
     margin-top: 1em;
+    color: var(--image-text-color);
+    background-color: var(--overlay-bg-color);
+    z-index: var(--overlay-z-index);
+    margin-left: 6em;
+    margin-right: 6em;
 }
 
 ul.images {
@@ -73,7 +82,7 @@ img.directory-icon {
 /* Navigation links on image pages. */
 
 body.image nav.prevnext ul {
-    z-index: 5;
+    z-index: var(--overlay-z-index);
     position: fixed;
     display: grid;
     grid-template-columns: 6em 1fr 6em;
@@ -107,14 +116,14 @@ body.image nav.prevnext li {
 }
 
 body.image nav.prevnext a {
-    background-color: rgba(211, 211, 211, 0.25);
+    background-color: var(--overlay-bg-color);
     border-radius: 5px;
     text-decoration: none;
-    color: whitesmoke;
+    color: var(--image-text-color);
 }
 
 body.image nav.prevnext a:hover {
-    background-color: rgba(211, 211, 211, 0.5);
+    background-color: var(--overlay-bg-color);
 }
 
 body.image nav.prevnext a.next-link,
