@@ -39,6 +39,8 @@ body.image figcaption {
     margin-right: 6em;
     padding: 0.5em;
     border-radius: var(--overlay-border-radius);
+    position: fixed;
+    bottom: 0.1em;
 }
 
 ul.images {
