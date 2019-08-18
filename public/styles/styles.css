@@ -8,6 +8,7 @@ body {
     --image-text-color: whitesmoke;
     --overlay-bg-color: rgba(211, 211, 211, 0.25);
     --overlay-z-index: 5;
+    --overlay-border-radius: 5px;
 }
 
 body.image figure {
@@ -36,6 +37,8 @@ body.image figcaption {
     z-index: var(--overlay-z-index);
     margin-left: 6em;
     margin-right: 6em;
+    padding: 0.5em;
+    border-radius: var(--overlay-border-radius);
 }
 
 ul.images {
@@ -109,7 +112,7 @@ body.image nav.prevnext li.album-link-item {
     grid-area: up;
     justify-self: center;
     /* This causes a slight gap at the top of the link's background, which I'm not sure how to fix yet. */
-    padding-top: 0.5em;
+    margin-top: 0.5em;
 }
 
 body.image nav.prevnext li {
@@ -117,7 +120,7 @@ body.image nav.prevnext li {
 
 body.image nav.prevnext a {
     background-color: var(--overlay-bg-color);
-    border-radius: 5px;
+    border-radius: var(--overlay-border-radius);
     text-decoration: none;
     color: var(--image-text-color);
 }
@@ -134,8 +137,8 @@ body.image nav.prevnext a.prev-link {
 
 body.image nav.prevnext a.album-link {
     padding: 5px;
-    padding-left: 25vw;
-    padding-right: 25vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 /* Prev/Next link bar on directory pages */
